@@ -228,7 +228,7 @@
             }
         
             // step 8
-            return undefined;
+            // return undefined;
         };
 
     }
