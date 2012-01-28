@@ -154,334 +154,334 @@
         };
 
     }
-    
-}());
 
 
-if (!Array.prototype.every) {
+    if (!Array.prototype.every) {
 
-    Array.prototype.every = function(callbackfn /*, thisp */) {
+        Array.prototype.every = function(callbackfn /*, thisp */) {
 
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-        
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        var T = arguments[1];
-
-        // step 6
-        var k = 0;
-
-        // step 7
-        while (k < len) {
-            if ((k in O) && !callbackfn.call(T, O[k], k, O)) {
-                return false;
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
             }
-            k++;
-        }
+            var O = Object(this);
         
-        // step 8
-        return true;
-    };
+            // steps 2 & 3
+            var len = O.length >>> 0;
 
-}
-
-
-if (!Array.prototype.forEach) {
-
-    Array.prototype.forEach = function(callbackfn /*, thisArg */) {
-
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-        
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        var T = arguments[1];
-
-        // step 6
-        var k = 0;
-        
-        // step 7
-        while (k < len) {
-            if (k in O) {
-                callbackfn.call(T, O[k], k, O);
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
             }
-            k++;
-        }
-        
-        // step 8
-        return undefined;
-    };
 
-}
+            // step 5
+            var T = arguments[1];
 
+            // step 6
+            var k = 0;
 
-if (!Array.prototype.filter) {
-
-    Array.prototype.filter = function(callbackfn /*, thisArg */) {
-
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-        
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        var T = arguments[1];
-
-        // step 6
-        var A = new Array();
-
-        // step 7
-        var k = 0;
-        
-        // step 8
-        var to = 0;
-        
-        // step 9
-        while (k < len) {
-            if (k in O) {
-                var kValue = O[k]; // in case callbackfn modifies O[k]
-                if (callbackfn.call(T, kValue, k, O)) {
-                    A[to++] = kValue;
-                }
-            }
-            k++;
-        }
-
-        // step 10
-        return A;
-    };
-
-}
-
-
-if (!Array.prototype.map) {
-
-    Array.prototype.map = function(callbackfn /*, thisArg */) {
-
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-        
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        var T = arguments[1];
-
-        // step 6
-        var a = new Array(len);
-
-        // step 7
-        var k = 0;
-        
-        // step 8
-        while (k < len) {
-            if (k in O) {
-                a[k] = callbackfn.call(T, O[k], k, O);
-            }
-            k++;
-        }
-        
-        // step 9        
-        return a;
-    };
-
-}
-
-
-if (!Array.prototype.some) {
-
-    Array.prototype.some = function(callbackfn /*, thisArg */) {
-
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-        
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        var T = arguments[1];
-
-        // step 6
-        var k = 0;
-
-        // step 7
-        while (k < len) {
-            if ((k in O) && callbackfn.call(T, O[k], k, O)) {
-                return true;
-            }
-            k++;
-        }
-
-        // step 8
-        return false;
-    };
-
-}
-
-
-if (!Array.prototype.reduce) {
-
-    Array.prototype.reduce = function(callbackfn /*, initialValue */) {
-
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
-
-        // steps 2 & 3
-        var len = O.length >>> 0;
-
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
-
-        // step 5
-        if (len === 0 && arguments.length < 2) {
-            throw new TypeError('reduce of empty array with no initial value');
-        }
-        
-        // step 6
-        var k = 0;
-
-        // step 7
-        var accumulator;
-        if (arguments.length > 1) {
-            accumulator = arguments[1];
-        }
-        // step 8
-        else {
-            var kPresent = false;
-            while ((!kPresent) && (k < len)) {
-                kPresent = k in O;
-                if (kPresent) {
-                    accumulator = O[k];
+            // step 7
+            while (k < len) {
+                if ((k in O) && !callbackfn.call(T, O[k], k, O)) {
+                    return false;
                 }
                 k++;
             }
-            if (!kPresent) {
+        
+            // step 8
+            return true;
+        };
+
+    }
+
+
+    if (!Array.prototype.forEach) {
+
+        Array.prototype.forEach = function(callbackfn /*, thisArg */) {
+
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
+        
+            // steps 2 & 3
+            var len = O.length >>> 0;
+
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
+
+            // step 5
+            var T = arguments[1];
+
+            // step 6
+            var k = 0;
+        
+            // step 7
+            while (k < len) {
+                if (k in O) {
+                    callbackfn.call(T, O[k], k, O);
+                }
+                k++;
+            }
+        
+            // step 8
+            return undefined;
+        };
+
+    }
+
+
+    if (!Array.prototype.filter) {
+
+        Array.prototype.filter = function(callbackfn /*, thisArg */) {
+
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
+        
+            // steps 2 & 3
+            var len = O.length >>> 0;
+
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
+
+            // step 5
+            var T = arguments[1];
+
+            // step 6
+            var A = new Array();
+
+            // step 7
+            var k = 0;
+        
+            // step 8
+            var to = 0;
+        
+            // step 9
+            while (k < len) {
+                if (k in O) {
+                    var kValue = O[k]; // in case callbackfn modifies O[k]
+                    if (callbackfn.call(T, kValue, k, O)) {
+                        A[to++] = kValue;
+                    }
+                }
+                k++;
+            }
+
+            // step 10
+            return A;
+        };
+
+    }
+
+
+    if (!Array.prototype.map) {
+
+        Array.prototype.map = function(callbackfn /*, thisArg */) {
+
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
+        
+            // steps 2 & 3
+            var len = O.length >>> 0;
+
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
+
+            // step 5
+            var T = arguments[1];
+
+            // step 6
+            var a = new Array(len);
+
+            // step 7
+            var k = 0;
+        
+            // step 8
+            while (k < len) {
+                if (k in O) {
+                    a[k] = callbackfn.call(T, O[k], k, O);
+                }
+                k++;
+            }
+        
+            // step 9        
+            return a;
+        };
+
+    }
+
+
+    if (!Array.prototype.some) {
+
+        Array.prototype.some = function(callbackfn /*, thisArg */) {
+
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
+        
+            // steps 2 & 3
+            var len = O.length >>> 0;
+
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
+
+            // step 5
+            var T = arguments[1];
+
+            // step 6
+            var k = 0;
+
+            // step 7
+            while (k < len) {
+                if ((k in O) && callbackfn.call(T, O[k], k, O)) {
+                    return true;
+                }
+                k++;
+            }
+
+            // step 8
+            return false;
+        };
+
+    }
+
+
+    if (!Array.prototype.reduce) {
+
+        Array.prototype.reduce = function(callbackfn /*, initialValue */) {
+
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
+
+            // steps 2 & 3
+            var len = O.length >>> 0;
+
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
+
+            // step 5
+            if (len === 0 && arguments.length < 2) {
                 throw new TypeError('reduce of empty array with no initial value');
             }
-        }
+        
+            // step 6
+            var k = 0;
 
-        // step 9
-        while (k < len) {
-            if (k in O) {
-                accumulator = callbackfn.call(undefined, accumulator, O[k], k, O);
+            // step 7
+            var accumulator;
+            if (arguments.length > 1) {
+                accumulator = arguments[1];
             }
-            k++;
-        }
+            // step 8
+            else {
+                var kPresent = false;
+                while ((!kPresent) && (k < len)) {
+                    kPresent = k in O;
+                    if (kPresent) {
+                        accumulator = O[k];
+                    }
+                    k++;
+                }
+                if (!kPresent) {
+                    throw new TypeError('reduce of empty array with no initial value');
+                }
+            }
+
+            // step 9
+            while (k < len) {
+                if (k in O) {
+                    accumulator = callbackfn.call(undefined, accumulator, O[k], k, O);
+                }
+                k++;
+            }
         
-        // step 10
-        return accumulator;
-    };
+            // step 10
+            return accumulator;
+        };
 
-}
+    }
 
 
-if (!Array.prototype.reduceRight) {
+    if (!Array.prototype.reduceRight) {
 
-    Array.prototype.reduceRight = function(callbackfn /*, initialValue */) {
+        Array.prototype.reduceRight = function(callbackfn /*, initialValue */) {
 
-        // step 1
-        if (this == null) {
-            throw new TypeError("can't convert " + this + " to object");
-        }
-        var O = Object(this);
+            // step 1
+            if (this == null) {
+                throw new TypeError("can't convert " + this + " to object");
+            }
+            var O = Object(this);
 
-        // steps 2 & 3
-        var len = O.length >>> 0;
+            // steps 2 & 3
+            var len = O.length >>> 0;
 
-        // step 4
-        if (typeof callbackfn != "function") {
-            throw new TypeError(callbackfn + " is not a function");
-        }
+            // step 4
+            if (typeof callbackfn != "function") {
+                throw new TypeError(callbackfn + " is not a function");
+            }
 
-        // step 5
-        if (len === 0 && arguments.length < 2) {
-            throw new TypeError('reduce of empty array with no initial value');
-        }
+            // step 5
+            if (len === 0 && arguments.length < 2) {
+                throw new TypeError('reduce of empty array with no initial value');
+            }
         
-        // step 6
-        var k = len-1;
+            // step 6
+            var k = len-1;
 
-        // step 7
-        var accumulator;
-        if (arguments.length > 1) {
-            accumulator = arguments[1];
-        }
-        // step 8
-        else {
-            var kPresent = false;
-            while ((!kPresent) && (k >= 0)) {
-                kPresent = k in O;
-                if (kPresent) {
-                    accumulator = O[k];
+            // step 7
+            var accumulator;
+            if (arguments.length > 1) {
+                accumulator = arguments[1];
+            }
+            // step 8
+            else {
+                var kPresent = false;
+                while ((!kPresent) && (k >= 0)) {
+                    kPresent = k in O;
+                    if (kPresent) {
+                        accumulator = O[k];
+                    }
+                    k--;
+                }
+                if (!kPresent) {
+                    throw new TypeError('reduce of empty array with no initial value');
+                }
+            }
+
+            // step 9
+            while (k >= 0) {
+                if (k in O) {
+                    accumulator = callbackfn.call(undefined, accumulator, O[k], k, O);
                 }
                 k--;
             }
-            if (!kPresent) {
-                throw new TypeError('reduce of empty array with no initial value');
-            }
-        }
-
-        // step 9
-        while (k >= 0) {
-            if (k in O) {
-                accumulator = callbackfn.call(undefined, accumulator, O[k], k, O);
-            }
-            k--;
-        }
         
-        // step 10
-        return accumulator;
-    };
+            // step 10
+            return accumulator;
+        };
 
-}
+    }
+
+}());
