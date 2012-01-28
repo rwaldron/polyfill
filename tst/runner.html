@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Polyfill Tests</title>
+
+    <!-- include the testing framework -->
+    <script src="jsunity.js"></script>
+
+    <!-- configure the testing framework -->
+    <script>
+        jsUnity.log = function (s) {
+            document.write("<div>" + s + "</div>");
+        };
+        jsUnity.attachAssertions(jsUnity);
+        
+        (function() {
+            
+            function fmt(str) {
+                var a = Array.prototype.slice.call(arguments, 1);
+                return str.replace(/\?/g, function () { return a.shift(); });
+            }
+            
+            jsUnity.assertArrayIdentical = function(expected, actual, message) {
+                if (expected.length !== actual.length) {
+                    throw fmt("?: (?) is not identical to (?)",
+                        message || "assertArrayIdentical", actual, expected);
+                }
+
+                for (var i=0, ilen=expected.length; i<ilen; i++) {
+                    if (((i in expected) && !(i in actual)) ||
+                        ((i in actual) && !(i in expected)) ||
+                        (expected[i] !== actual[i])) {
+                        throw fmt("?: (?) is not identical to (?)",
+                            message || "assertArrayIdentical", actual, expected);
+                    }
+                }
+
+            };
+            
+        }());
+        
+    </script>
+
+    <!-- delete the Array extras if they exist so that
+         the polyfill implementations will be tested
+         in any browser -->
+    <script>
+        delete Array.prototype.indexOf;
+        delete Array.prototype.lastIndexOf;
+        delete Array.prototype.every;
+        delete Array.prototype.forEach;
+        delete Array.prototype.filter;
+        delete Array.prototype.map;
+        delete Array.prototype.some;
+        delete Array.prototype.reduce;
+        delete Array.prototype.reduceRight;
+    </script>
+
+    <!-- load the source code to be tested -->
+    <script src="../src/array.js"></script>
+
+    <!-- load the test suites to be run -->
+    <script src="indexOfSuite.js"    ></script>
+    <script src="lastIndexOfSuite.js"></script>
+    <script src="everySuite.js"      ></script>
+    <script src="forEachSuite.js"    ></script>
+    <script src="filterSuite.js"     ></script>
+    <script src="mapSuite.js"        ></script>
+    <script src="someSuite.js"       ></script>
+    <script src="reduceSuite.js"     ></script>
+    <script src="reduceRightSuite.js"></script>
+
+</head>
+<body>
+
+    <!-- run the test suites -->
+    <script>
+
+        jsUnity.run(
+            indexOfSuite,
+            lastIndexOfSuite,
+            everySuite,
+            forEachSuite,
+            filterSuite,
+            mapSuite,
+            someSuite,
+            reduceSuite,
+            reduceRightSuite
+            );
+
+    </script>
+
+</body>
+</html>

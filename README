@@ -1,0 +1,10 @@
+Older browsers like Internet Explorer 8 do not implement the
+new Array.prototype methods defined in ECMAScript 5. This code
+checks if these methods are defined and if not defines them
+with implementations as close as possible to
+the ECMAScript 5 specifications.
+
+
+TESTS
+
+Open tst/runner.html in a browser to see the tests run.
