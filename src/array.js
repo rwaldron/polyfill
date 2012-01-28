@@ -30,7 +30,7 @@
 // The somewhat unusual variable names match also match the names
 // used in the ECMAScript 5 spec.
 
-(function() {
+(function(undefined) {
     
     function ToInteger(inputArg) {
 
