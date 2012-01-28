@@ -268,8 +268,11 @@ if (!Array.prototype.filter) {
         
         // step 9
         while (k < len) {
-            if ((k in O) && callbackfn.call(T, O[k], k, O)) {
-                A[to++] = O[k];
+            if (k in O) {
+                var kValue = O[k]; // in case callbackfn modifies O[k]
+                if (callbackfn.call(T, kValue, k, O)) {
+                    A[to++] = kValue;
+                }
             }
             k++;
         }

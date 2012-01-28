@@ -13,6 +13,11 @@ var filterSuite = {
         jsUnity.assertArrayIdentical(['b'],  arr.filter(function(e){return 'b' === e;}));
     },
     
+    testFnModifiesArr: function() {
+        var arr = ['a', 'b', 'c', 'b'];
+        jsUnity.assertArrayIdentical(['b','b'],  arr.filter(function(e, i){arr[i]='z';return 'b' === e;}));
+    },
+    
     testObject: function() {
         var obj = {0:'a', 1:'b', 2:'c', 3:'b', length:4};
         jsUnity.assertArrayIdentical(['b','b'], Array.prototype.filter.call(obj, function(e){return 'b' === e;}));
