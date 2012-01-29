@@ -4,7 +4,39 @@ checks if these methods are defined and if not defines them
 with implementations as close as possible to
 the ECMAScript 5 specifications.
 
+The array polyfills are generic and can iterate over an object
+with a length property. They can operation on a string in
+an environment where the str[i] syntax works which was an
+addition to ECMAScript 5 and is not supported in older browsers.
+To reliably iterate over a string use split. For example.
+
+  Array.prototype.forEach.call(str.split(""), function(){})
+
+There is a trick in Kris Kowal's es5-shim library to make
+the array polyfills more string friendly by splitting the 
+string for you. It does, however, send the split string
+as the third argument to the iterators which is incorrect.
+It is a trade-off and one is not better but this is why
+I've chosen not to include the string splitting trick.
+
+----------------
 
 TESTS
 
 Open tst/runner.html in a browser to see the tests run.
+
+----------------
+
+Helpful links for implementation comparison:
+
+https://github.com/kriskowal/es5-shim/blob/master/es5-shim.js
+
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/every
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/filter
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/map
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduce
+https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reduceRight
