@@ -297,7 +297,7 @@
             var T = arguments[1];
 
             // step 6
-            var a = new Array(len);
+            var A = new Array(len);
 
             // step 7
             var k = 0;
@@ -305,13 +305,13 @@
             // step 8
             while (k < len) {
                 if (k in O) {
-                    a[k] = callbackfn.call(T, O[k], k, O);
+                    A[k] = callbackfn.call(T, O[k], k, O);
                 }
                 k++;
             }
         
             // step 9        
-            return a;
+            return A;
         };
 
     }
