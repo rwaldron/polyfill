@@ -19,6 +19,15 @@ as the third argument to the iterators which is incorrect.
 It is a trade-off and one is not better but this is why
 I've chosen not to include the string splitting trick.
 
+For JSON polyfills use Douglas Crockford's json2.js
+
+https://github.com/douglascrockford/JSON-js
+
+JSON.parse
+JSON.stringify
+Date.prototype.toJSON
+
+
 ----------------
 
 TESTS
