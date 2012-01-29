@@ -40,7 +40,7 @@
         var number = Number(inputArg);
 
         // step 2
-        if (isNaN(number)) {
+        if (number != number) { // isNaN check without using potentially redefined global
             return 0;
         }
 
