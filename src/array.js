@@ -129,22 +129,15 @@
             // step 5
             var n = (arguments.length > 1) ? ToInteger(arguments[1]) : (len - 1);
 
-            // step 6
-            var k;
-            if (n >= 0) {
-                k = Math.min(n, len-1);
-            }
-            // step 7
-            else {
-                k = len - Math.abs(n);
-            }
+            // steps 6 & 7
+            var k = (n >= 0) ? 
+                        Math.min(n, len-1) : 
+                        (len - Math.abs(n));
 
             // step 8
             while (k >= 0) {
-                if (k in O) {
-                    if (searchElement === O[k]) {
-                        return k;
-                    }
+                if ((k in O) && (searchElement === O[k])) {
+                    return k;
                 }
                 k--;
             }
