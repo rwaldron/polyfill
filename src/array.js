@@ -30,17 +30,15 @@
 // The somewhat unusual variable names match also match the names
 // used in the ECMAScript 5 spec.
 
-(function(undefined) { // in case global undefined has been redefined
-    
-    var Infinity = 1/0; // in case global Infinity has been redefined
-    
+(function() {
+        
     function ToInteger(inputArg) {
 
         // step 1
         var number = Number(inputArg);
 
         // step 2
-        if (number != number) { // isNaN check without using potentially redefined global
+        if (isNaN(number)) {
             return 0;
         }
 
