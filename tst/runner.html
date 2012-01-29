@@ -54,10 +54,12 @@
         delete Array.prototype.some;
         delete Array.prototype.reduce;
         delete Array.prototype.reduceRight;
+        delete Date.now;
     </script>
 
     <!-- load the source code to be tested -->
     <script src="../src/array.js"></script>
+    <script src="../src/date.js"></script>
 
     <!-- load the test suites to be run -->
     <script src="indexOfSuite.js"    ></script>
@@ -69,6 +71,7 @@
     <script src="someSuite.js"       ></script>
     <script src="reduceSuite.js"     ></script>
     <script src="reduceRightSuite.js"></script>
+    <script src="nowSuite.js"        ></script>
 
 </head>
 <body>
@@ -85,8 +88,8 @@
             mapSuite,
             someSuite,
             reduceSuite,
-            reduceRightSuite
-            );
+            reduceRightSuite,
+            nowSuite);
 
     </script>
 
