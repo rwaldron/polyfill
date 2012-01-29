@@ -4,8 +4,8 @@
 */
 
 /*
-    I've modified to check for this object that is undefined or null as
-    required by the ECMAScript 5 specification.
+    Modifications by Peter Michaux to check for this object that 
+    is undefined or null as required by the ECMAScript 5 specification.
 */
 
 (function() {
