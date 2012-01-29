@@ -30,9 +30,9 @@
 // The somewhat unusual variable names match also match the names
 // used in the ECMAScript 5 spec.
 
-(function(undefined) {
+(function(undefined) { // in case global undefined has been redefined
     
-    var Infinity = 1/0;
+    var Infinity = 1/0; // in case global Infinity has been redefined
     
     function ToInteger(inputArg) {
 
