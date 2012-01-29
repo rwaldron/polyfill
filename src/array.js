@@ -32,6 +32,8 @@
 
 (function(undefined) {
     
+    var Infinity = 1/0;
+    
     function ToInteger(inputArg) {
 
         // step 1
