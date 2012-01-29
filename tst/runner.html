@@ -55,11 +55,13 @@
         delete Array.prototype.reduce;
         delete Array.prototype.reduceRight;
         delete Date.now;
+        delete String.prototype.trim;
     </script>
 
     <!-- load the source code to be tested -->
     <script src="../src/array.js"></script>
     <script src="../src/date.js"></script>
+    <script src="../src/string.js"></script>
 
     <!-- load the test suites to be run -->
     <script src="indexOfSuite.js"    ></script>
@@ -72,6 +74,7 @@
     <script src="reduceSuite.js"     ></script>
     <script src="reduceRightSuite.js"></script>
     <script src="nowSuite.js"        ></script>
+    <script src="trimSuite.js"       ></script>
 
 </head>
 <body>
@@ -89,7 +92,8 @@
             someSuite,
             reduceSuite,
             reduceRightSuite,
-            nowSuite);
+            nowSuite,
+            trimSuite);
 
     </script>
 
